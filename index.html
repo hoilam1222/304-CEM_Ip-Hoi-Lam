@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>Welcome</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Blog Template"> 
+  <meta name="author" content="Xiaoying Riley at 3rd Wave Media">  
+ <link rel="shortcut icon" href="favicon.ico"> 
+    
+    <!-- FontAwesome JS-->
+ <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script> 
+ <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v11.0&appId=325807700950410&autoLogAppEvents=1" nonce="8WnTiAWw"></script>
+    
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme1.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
+
+</head> 
+
+
+<script>
+//天文台
+$(document).ready(function(){
+
+
+		$.ajax({
+				type:"GET",
+				url:"https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=fnd&lang=tc",
+				dataType: "json",
+				success: function(result, status, xhr){
+
+
+				
+				for(i=0; i<result.weatherForecast.length ;i++){
+				$("#weather1").append(
+				"<tr>"+
+				//"<td>"+result.data[i].route+"</td>"+
+				"<td>"+result.weatherForecast[i].forecastDate+"<br/>"+result.weatherForecast[i].week+"</td>"+
+	
+				"<td>"+result.weatherForecast[i].forecastMaxtemp.value+result.weatherForecast[i].forecastMaxtemp.unit+
+				" ~ "+result.weatherForecast[i].forecastMintemp.value+result.weatherForecast[i].forecastMintemp.unit+
+				"<td>"+result.weatherForecast[i].forecastWeather+"</td>"+	
+	
+				"</tr>"
+				
+				
+				)};
+				
+			
+				
+				},
+				
+				error: function(xhr,status, error){
+				alert("Result: "+status+" "+error+" "+xhr.status+" "+xhr.statusText)
+				}
+				
+				});
+				
+				
+				
+
+})
+
+
+
+
+</script>
+
+
+
+<body>
+     <header class="header text-center">	    
+	    
+		<h1 class="blog-name pt-lg-4 mb-0"><a href="index">Welcome</a></h1>
+		
+		<!-- show api in website-->
+		
+       
+	    <nav class="navbar navbar-expand-lg navbar-dark" >
+           
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div id="navigation" class="collapse navbar-collapse flex-column" >
+				<div class="profile-section pt-3 pt-lg-0">
+				    <img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/profile.png" alt="image" >			
+					
+					
+					<ul class="social-list list-inline py-3 mx-auto">
+			            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="#"><i class="fab fa-github-alt fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="#"><i class="fab fa-stack-overflow fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="#"><i class="fab fa-codepen fa-fw"></i></a></li>
+			        </ul><!--//social-list-->
+			        <hr> 
+				</div><!--//profile-section-->
+				
+				<ul class="navbar-nav flex-column text-left">
+					<li class="nav-item active">
+					
+					    <a class="nav-link" href="index">Home Page</span></a>
+					</li>
+					<!--//login-->
+					<li class="nav-item">
+					    <a class="nav-link" href="login">Login</a>
+					</li>
+					
+					<li class="nav-item">
+					    <a class="nav-link" href="kmbroutedata">KMB Bus Route</a>
+					</li>
+					
+					<li class="nav-item">
+					    <a class="nav-link" href="nwfbroutedata">NWFB Bus Route</a>
+					</li>
+					
+					<li class="nav-item">
+					    <a class="nav-link" href="showfeedback">Message Board</a>
+					</li>
+					
+			
+				
+					</ul>
+			
+		</nav>
+    </header>
+    
+    <div class="main-wrapper">
+	    <section class="cta-section theme-bg-light py-5">
+		    <div class="container text-center">
+			    <h2 class="heading">Hiking Lover</h2>
+				<div id="time"></div>
+				
+		
+		
+		</section>
+
+				
+		<section class="blog-list px-3 py-5 p-md-5">
+		    <div class="container">
+			    <div class="item mb-5">
+				<h4>Top 5 Hiking Hotspots in Hong Kong:</h4>
+				<br>
+				    <div class="media">
+					    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="assets/images/blog/blog-post-thumb-1.jpg" alt="image">
+					    <div class="media-body">
+						  <h3>  <a  href="Dadongshan">1.Dadongshan</a></h3>
+						    
+							<!-- detail link-->
+						
+						    <!-- <a class="more-link" href="blog-post.html">Read more &rarr;</a> --> 
+							
+							
+					    </div><!--//media-body-->
+				    </div><!--//media-->
+			    </div><!--//item-->
+				
+				
+				<div class="item mb-5">
+				    <div class="media">
+					    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="assets/images/blog/blog-post-thumb-2.jpg" alt="image">
+					    <div class="media-body">
+						  <h3>  <a  href="devilsmountain">2. Devil's Mountain</a></h3>
+
+			    </div></div>
+				<br><br><br>
+				
+					<div class="item mb-5">
+				    <div class="media">
+					    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="assets/images/blog/blog-post-thumb-3.jpg" alt="image">
+					    <div class="media-body">
+						   <h3> <a href="qiandaolake">3. Qiandao Lake</a></h3>
+							
+						    
+						  
+			    </div></div>
+				
+				<br><br><br>
+				
+				<div class="item mb-5">
+				    <div class="media">
+					    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="assets/images/blog/blog-post-thumb-4.jpg" alt="image">
+					    <div class="media-body">
+						   <h3> <a href="haktsui">4. Crab Cave at Hak Tsui</a></h3>
+							
+						    
+						  
+			    </div></div>
+				
+				<br><br><br>
+				
+				<div class="item mb-5">
+				    <div class="media">
+					    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="assets/images/blog/blog-post-thumb-5.jpg" alt="image">
+					    <div class="media-body">
+						   <h3> <a href="dragonsback">5. Dragon's Back</a></h3>
+							
+						    
+						  
+			    </div></div>
+
+	    </section>
+		
+		<div> <id="apiresult"> </div>
+		
+		<h4>Hong Kong Nine-Day Weather Forecast:</h4>
+	    <table border=1>
+		<tr>
+			<td> Date </td>
+			<td> Temperature </td>
+			<td> Detail </td>
+		</tr>
+			<div> <tbody id="weather1"> 
+					
+		</tbody>
+
+		</table>
+		<br><br><br><br><br>
+		
+	
+		<div class="fb-page" data-href="https://www.facebook.com/Love-Hiking-110229901363347" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/Love-Hiking-110229901363347" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Love-Hiking-110229901363347">Love Hiking</a></blockquote></div>
+		 </div>
+	
+    </div><!--//main-wrapper-->
+    
+    
+    <!-- Javascript -->          
+  <script src="assets/plugins/jquery-3.3.1.min.js"></script>
+  <script src="assets/plugins/popper.min.js"></script> 
+ <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+    <script src="assets/js/demo/style-switcher.js"></script>     
+    
+	
+	
+
+</body>
+</html> 
+

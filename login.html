@@ -1,0 +1,411 @@
+<html>
+<head>
+<br> 
+<a class="button1" href ="index"> Home Page </a>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<style>
+
+
+	body {
+
+		  background-color: #e4e8da;
+
+
+		margin: 0;
+		padding: 0;
+		font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;font-weight: light;
+		font-weight: 100;
+	}
+
+.loginWrapper {
+	display: block;
+	position: relative;
+	width: 350px;
+	text-align: center;	
+	margin: auto;
+	right: 0;
+	left: 0;
+	margin-top: 60px;
+	margin-bottom: 60px;
+	z-index: 1000;
+	transition: box-shadow 1s;
+	
+
+
+}
+
+* {
+  box-sizing: border-box;
+  padding: 2;
+  margin: 0;
+}
+
+nav {
+  z-index: 9;
+  color: 	#FF0080;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.tabs {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  -webkit-transform: translateY(5px);
+  transform: translateY(5px);
+}
+
+.tabs > li {
+  transition-duration: .25s;
+  display: table-cell;
+  list-style: none;
+  text-align: center;
+  padding: 20px 20px 25px 20px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  color: #666;
+  background-color: none;
+
+}
+.tabs > li:before {
+  z-index: -1;
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 120%;
+  color: #FFF;  
+  top: 0;
+  left: 0;
+ 	background-color: #DDD;
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+  transition-duration: .25s;
+  border-radius: 8px 8px 0 0;
+}
+
+.tabs > li:hover:before {
+  -webkit-transform: translateY(70%);
+  transform: translateY(70%);
+}
+.tabs > li.active {
+  color: #FFF;
+  
+  	font-size: 16px;
+		margin: 12px 0px;
+	
+		font-weight: 100;
+  
+}
+.tabs > li.active:before {
+  transition-duration: .5s;
+ 	background-color: 	#81C0C0;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.tab__content {
+  background-color: white;
+  position: relative;
+  width: 100%;
+  border-radius: 5px 5px 0px 0px;
+ 	background-color: 	#81C0C0;
+-webkit-box-shadow: 0px 12px 34px -8px rgba(0,0,0,0.28);
+-moz-box-shadow: 0px 12px 34px -8px rgba(0,0,0,0.28);
+box-shadow: 0px 12px 34px -8px rgba(0,0,0,0.28);
+ 
+}
+.tab__content > li {
+  width: 100%;
+  position: absolute;
+  border-radius: 5px;
+  color: #FFF;
+  top: 0;
+  left: 0;
+  background-color: #81C0C0 ;
+  display: none;
+  list-style: none;
+}
+.tab__content > li .content__wrapper {
+  text-align: center;
+  border-radius: 5px;
+  padding-top: 24px;
+  background-color: 	#81C0C0;
+  
+ 
+ 
+	
+		font-size: 16px;
+		margin: 12px 0px;
+	
+		font-weight: 100;
+   
+  
+}
+
+.button1 {
+	width: 300px;
+	background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+	form input {
+		border: none;
+		padding: 12px;
+		background: #EEE;
+		font-size: 16px;
+		margin: 12px 0px;
+		width: 300px;
+		font-weight: 100;
+    	outline: none;
+	}
+
+	form input:first-child {margin-top: 8px;}
+	form input:last-child {margin-top: 16px; margin-bottom: 0px;}
+
+	form input:focus {background-color: #FFF;}
+	form input:hover {background-color: #FFF;}
+	form input:placeholder {color: blue;}
+
+	form [type="submit"]:focus,
+	form [type="submit"]:hover {background: #009CEF;}
+
+	form [type="submit"] {
+		background: #3399DD;
+		color: #FFF;
+		padding: 24px;
+		width: 100%;
+		cursor: pointer;
+	}
+
+	::-webkit-input-placeholder {color: #DDD;}
+	:-moz-placeholder           {color: #DDD;}
+	::-moz-placeholder          {color: #DDD;}
+	:-ms-input-placeholder      {color: #DDD;}
+
+
+</style>
+</head>
+
+<script>
+$(document).ready(function(){
+    
+    // Variables
+    var clickedTab = $(".tabs > .active");
+    var tabWrapper = $(".tab__content");
+    var activeTab = tabWrapper.find(".active");
+    var activeTabHeight = activeTab.outerHeight();
+    
+    // Show tab on page load
+    activeTab.show();
+    
+	
+    // Set height of wrapper on page load
+    tabWrapper.height(activeTabHeight);
+    
+    $(".tabs > li").on("click", function() {
+        
+        // Remove class from active tab
+        $(".tabs > li").removeClass("active");
+        
+        // Add class active to clicked tab
+        $(this).addClass("active");
+        
+        // Update clickedTab variable
+        clickedTab = $(".tabs .active");
+        
+        // fade out active tab
+        activeTab.fadeOut(250, function() {
+            
+            // Remove active class all tabs
+            $(".tab__content > li").removeClass("active");
+            
+            // Get index of clicked tab
+            var clickedTabIndex = clickedTab.index();
+
+            // Add class active to corresponding tab
+            $(".tab__content > li").eq(clickedTabIndex).addClass("active");
+            
+            // update new active tab
+            activeTab = $(".tab__content > .active");
+            
+            // Update variable
+            activeTabHeight = activeTab.outerHeight();
+            
+            // Animate height of wrapper to new tab height
+            tabWrapper.stop().delay(50).animate({
+                height: activeTabHeight
+            }, 500, function() {
+                
+                // Fade in active tab
+                activeTab.delay(50).fadeIn(250);
+                
+            });
+        });
+    });
+});
+</script>
+
+
+<!--login checking-->
+<script>
+ $(document).ready(function(){
+
+	
+	$("#login").click(function() {
+	
+		if ($("#user").val()=="" || $("#pwd").val()=="") {
+			alert('LoginID & Password cannot Null!');
+			return false;
+		}
+	
+	
+		var username =$("#user").val();
+		var passwd =$("#pwd").val();
+		var mydata ="login="+username+"&password="+passwd;
+		
+		alert(mydata);
+        $.ajax({
+            type: 'POST',
+            url: 'http://127.0.0.1:8888/check_login',
+			dataType:"text",
+			data:mydata,
+            success: function(data) {
+			alert(data);
+				if(data=="login_ok"){
+					alert(data);
+					localStorage.setItem("loginid", username);
+					localStorage.setItem("loginstatus", "OK");
+					location.href="http://www.hyalinehk.com:8888/index";
+					
+			//	}else{
+					alert(data);
+				}
+				
+            },
+            error: function(xhr, status, error) {
+                console.log('Error: ' + error.message);
+            }
+        });
+    });
+	
+	});
+
+</script>
+
+<!--Register checking-->
+<script>
+ $(document).ready(function(){
+
+	
+	$("#register").click(function() {
+	
+		if ($("#use").val()=="" || $("#pwdd").val()=="") {
+			alert('LoginID & Password cannot Null!');
+			return false;
+		}
+	
+	
+		var usernm =$("#use").val();
+		var pawd =$("#pwdd").val();
+		var eml =$("#email").val();
+		var repass =$("#rpwd").val();
+		
+		
+		
+		var mydata ="Registername="+usernm+"&password="+pawd+"&email="+eml+"&repassword="+repass;
+		alert(mydata);
+        $.ajax({
+            type: 'POST',
+            url: 'http://127.0.0.1:8888/check_reg',
+			dataType:"text",
+			data:mydata,
+            success: function(data) {
+			alert(data);
+				if(data=="register_ok"){
+					alert(data);
+					//localStorage.setItem("loginid", usernm);
+					//localStorage.setItem("loginstatus", "OK");
+					location.href="http://www.hyalinehk.com:9999/book";
+					
+			//	}else{
+					alert(data);
+				}
+				
+            },
+            error: function(xhr, status, error) {
+                console.log('Error: ' + error.message);
+            }
+        });
+    });
+	
+	});
+
+</script>
+
+
+
+
+
+
+
+
+<Body>
+<section class="loginWrapper">
+  
+	<ul class="tabs">
+		<li class="active">Login</li>
+		<li>Register</li>
+	</ul>
+
+	<ul class="tab__content">
+    
+		<li class="active">
+		
+			<div class="content__wrapper">
+				
+					<input type="username" name="username" placeholder="username" id="user" required>
+					<input type="password" name="password" placeholder="Password" id="pwd" required>
+					
+					<br>
+					<button  id="login" name="login"  > Log In </button>
+					
+					
+					
+					
+				
+			</div>
+		</li>
+   
+		<li>
+			<div class="content__wrapper">
+				
+					<input type="name" name="name" placeholder="Username" id="use" required>
+					<input type="email" name="email" placeholder="email" id="email" required>
+					<input type="pass" name="pass" placeholder="Password" id="pwdd" required>
+					<input type="repass" name="repass" placeholder="Repeat-Password" id="rpwd" required>
+					
+					<br>
+					<button  id="register" name="register" > Register </button>
+				
+			</div>
+		</li>
+  
+	</ul>
+
+</section>
+</Body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>cat-11</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Blog Template"> 
+  <meta name="author" content="Xiaoying Riley at 3rd Wave Media">  
+ <link rel="shortcut icon" href="favicon.ico"> 
+    
+    <!-- FontAwesome JS-->
+ <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script> 
+ 
+    
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme1.css">
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+   
+
+</head> 
+<style>
+
+.button {
+	width: 1000px;
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+</style>
+
+
+<script>
+
+
+$(document).ready(function(){
+ 
+
+
+        $.ajax({
+            type: 'POST',
+            url: 'http://127.0.0.1:8888/com_data',
+			dataType:"JSON",
+			data:"1",
+            success: function(data) {
+
+			// Get all data
+			//alert(data);
+			//alert(JSON.stringify(data[0]));
+			
+       		//alert(data[2].Title);
+		
+			for(i=0; i< data.length; i++){
+			$("#titled").append(data[i].title);
+			//$("#btn").append("<button id='btn"+i+"'>Editabc</button>");
+            $("#btn").append("<a href='/feedback?id="+data[i].content+"'>Edit</a>");			
+			$("#btn").append("<br />");
+			$("#titled").append("<br />");
+			}
+			
+		//	alert(data[3].Comment);
+		
+			for(i=0; i< data.length; i++){
+			$("#content").append(data[i].content);
+			$("#content").append("<br />");
+			}
+			
+				if(data=="login_ok"){
+					alert(data);
+					localStorage.setItem("title", title);
+					localStorage.setItem("contect", content);
+					localStorage.setItem("loginstatus", "OK");
+					location.href="http://127.0.0.1:8888/index";
+					
+			//	}else{
+					alert(data);
+				}
+				
+            },
+            error: function(xhr, status, error) {
+                console.log('Error: ' + error.message);
+            }
+        });
+		
+		
+		
+		
+		$('#abc0').on('click', function(){
+          alert("d");
+ });
+    });
+	
+	
+
+</script>
+
+<body>
+ 
+     <header class="header text-center">	    
+	    
+		<h1 class="blog-name pt-lg-4 mb-0"><a href="index">Welcome</a></h1>
+		
+		<!-- show api in website-->
+		
+       
+	    <nav class="navbar navbar-expand-lg navbar-dark" >
+           
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div id="navigation" class="collapse navbar-collapse flex-column" >
+				<div class="profile-section pt-3 pt-lg-0">
+				    <img class="profile-image mb-3 rounded-circle mx-auto" src="assets/images/profile.png" alt="image" >			
+					
+					
+					<ul class="social-list list-inline py-3 mx-auto">
+			            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="#"><i class="fab fa-github-alt fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="#"><i class="fab fa-stack-overflow fa-fw"></i></a></li>
+			            <li class="list-inline-item"><a href="#"><i class="fab fa-codepen fa-fw"></i></a></li>
+			        </ul><!--//social-list-->
+			        <hr> 
+				</div><!--//profile-section-->
+				
+				<ul class="navbar-nav flex-column text-left">
+					<li class="nav-item active">
+					
+					    <a class="nav-link" href="index">Home Page</span></a>
+					</li>
+					<!--//login-->
+					<li class="nav-item">
+					    <a class="nav-link" href="login">Login</a>
+					</li>
+					
+					<li class="nav-item">
+					    <a class="nav-link" href="kmbroutedata">KMB Bus Route</a>
+					</li>
+					
+					<li class="nav-item">
+					    <a class="nav-link" href="nwfbroutedata">NWFB Bus Route</a>
+					</li>
+					
+					<li class="nav-item">
+					    <a class="nav-link" href="showfeedback">Message Board</a>
+					</li>
+					
+			
+				
+					</ul>
+			
+		</nav>
+    </header>
+    
+   <div class="main-wrapper">
+	    <section class="cta-section theme-bg-light py-5">
+		    <div class="container text-center">
+			    <h2 class="heading">Message Board</h2>
+			   </div> </section>
+				
+			<a class="button"  href="addfeedback"> Add Message</a> 
+				<table border="5">
+
+					<table >
+ 					<tr style="visibility: hidden;">
+					<td width="400px">
+					<td width="400px">
+					<td width="100px">
+					<td width="100px">
+					<td width="60px">
+					</tr>
+
+				<tr>
+				<td><h4>Title</h4></td>
+				<td><h4>Comment</h4></td>
+				<td><h4>Edit</h4></td>
+				</tr>
+				
+
+				<tr>
+				<td>
+				<div id="titled" ></div>
+							
+				</td>
+				
+				<td>
+				<div id="content"></div>
+				</td>
+				<td><div>
+				
+				<div id="btn"></div>
+				</div>
+				</td>
+				
+				<br>
+				
+				
+				
+				
+
+
+              <!--next button-->			    
+			   <!-- <nav class="blog-nav nav nav-justified my-5">
+				  <a class="nav-link-prev nav-item nav-link d-none rounded-left" href="#">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+				  <a class="nav-link-next nav-item nav-link rounded" href="blog-list.html">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+				</nav>
+				
+		    </div>-->
+	    </section>
+	    
+	   
+    
+    </div><!--//main-wrapper-->
+    
+    
+    
+  
+
+    
+       
+    <!-- Javascript -->          
+  <script src="assets/plugins/jquery-3.3.1.min.js"></script>
+  <script src="assets/plugins/popper.min.js"></script> 
+ <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+    <script src="assets/js/demo/style-switcher.js"></script>     
+    
+	
+	
+
+</body>
+</html> 
+
